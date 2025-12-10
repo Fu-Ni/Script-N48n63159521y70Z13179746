@@ -10,9 +10,9 @@ local invite = "https://discord.gg/3NjyJjjXxF"
 
 if not supported[game.PlaceId] then
     setclipboard(invite)
-    Library:Notify("❌ Game not supported — Join discord for more info", 5)
+    Library:Notify("❌ Game not supported — Discord link copied. Join for updates & keyless scripts.", 5)
     return
 end
 
 setclipboard(invite)
-Library:Notify("✔ Game supported — Join discord for scripts", 5)
+Library:Notify("✔ Game supported — Discord link copied. Join for keyless scripts.", 5)
