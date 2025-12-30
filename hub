@@ -1,0 +1,78 @@
+-- ===== libs ===== --
+local repo = "https://raw.githubusercontent.com/deividcomsono/Obsidian/main/"
+local Library = loadstring(game:HttpGet(repo.."Library.lua"))()
+
+-- ===== notify + clipboard ===== --
+local invite = "https://discord.gg/3NjyJjjXxF"
+setclipboard(invite)
+Library:Notify("Join Discord for Scripts!", 3)
+
+-- ===== window ===== --
+local Window = Library:CreateWindow({
+    Title = "DON's Script",
+    Icon = 95816097006870,
+    NotifySide = "Right",
+    ShowCustomCursor = true,
+})
+
+local Tabs = {
+    Info = Window:AddTab("Info","info"),
+    ["UI Settings"] = Window:AddTab("UI Settings","settings"),
+}
+
+-- ===== helper: left aligned button ===== --
+local function AddLeftButton(Groupbox, text, url)
+    local Button = Instance.new("TextButton")
+    Button.Size = UDim2.new(1, -10, 0, 30)
+    Button.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+    Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Button.TextXAlignment = Enum.TextXAlignment.Left
+    Button.Text = "  "..text
+    Button.Font = Enum.Font.Gotham
+    Button.TextSize = 14
+    Button.BorderSizePixel = 0
+    Button.Parent = Groupbox.Container
+
+    Button.MouseButton1Click:Connect(function()
+        Library:Unload()
+        task.spawn(function()
+            loadstring(game:HttpGet(url))()
+        end)
+    end)
+end
+
+-- ===== Info ===== --
+local SupportGroup = Tabs.Info:AddLeftGroupbox("Supported Games","list")
+
+AddLeftButton(SupportGroup,"🌈ㆍAura Craft",
+"https://raw.githubusercontent.com/Fu-Ni/Script-N48n63159521y70Z13179746/refs/heads/main/Aura%20Craft")
+
+AddLeftButton(SupportGroup,"🏀ㆍBasketball Legends",
+"https://raw.githubusercontent.com/Fu-Ni/Script-N48n63159521y70Z13179746/refs/heads/main/Basketball%20Legends")
+
+AddLeftButton(SupportGroup,"❓ㆍLucky Blocks Battlegrounds",
+"https://raw.githubusercontent.com/Fu-Ni/Script-N48n63159521y70Z13179746/refs/heads/main/LUCKY%20BLOCKS%20Battlegrounds")
+
+AddLeftButton(SupportGroup,"🏚️ㆍThe Storage",
+"https://raw.githubusercontent.com/Fu-Ni/Script-N48n63159521y70Z13179746/refs/heads/main/The%20storage")
+
+AddLeftButton(SupportGroup,"🕯️ㆍViolence District",
+"https://raw.githubusercontent.com/Fu-Ni/Script-N48n63159521y70Z13179746/refs/heads/main/Violence%20District")
+
+AddLeftButton(SupportGroup,"🏐ㆍVolleyball Legends",
+"https://raw.githubusercontent.com/Fu-Ni/Script-N48n63159521y70Z13179746/refs/heads/main/Volleyball%20Legends")
+
+AddLeftButton(SupportGroup,"🎯ㆍ[FPS] Flick",
+"https://raw.githubusercontent.com/Fu-Ni/Script-N48n63159521y70Z13179746/refs/heads/main/Flick")
+
+local InfoGroup = Tabs.Info:AddRightGroupbox("Join Discord For Scripts","help")
+InfoGroup:AddButton("Copy Discord Invite", function()
+    setclipboard(invite)
+    Library:Notify("Discord link copied.", 3)
+end)
+
+-- ===== UI Settings ===== --
+local MenuGroup = Tabs["UI Settings"]:AddLeftGroupbox("Menu","wrench")
+MenuGroup:AddButton("Unload", function()
+    Library:Unload()
+end)
